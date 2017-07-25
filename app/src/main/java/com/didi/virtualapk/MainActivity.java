@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView textView = (TextView)findViewById(R.id.textView);
+        TextView textView = (TextView) findViewById(R.id.textView);
         String cpuArch;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             cpuArch = Build.SUPPORTED_ABIS[0];
@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
             cpuArch = Build.CPU_ABI;
         }
         textView.setText(cpuArch);
-        Log.d("ryg", "onCreate cpu arch is "+ cpuArch);
+        Log.d("ryg", "onCreate cpu arch is " + cpuArch);
         this.loadPlugin(this);
-        Log.d("ryg", "onCreate classloader is "+ getClassLoader());
+        Log.d("ryg", "onCreate classloader is " + getClassLoader());
     }
 
     public void onButtonClick(View v) {
@@ -71,13 +71,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadPlugin(Context base) {
         PluginManager pluginManager = PluginManager.getInstance(base);
-        File apk = new File(Environment.getExternalStorageDirectory(), "Test.apk");
+        Log.e("loadplugin","enviroment.path="+Environment.getExternalStorageDirectory());
+        File apk = new File(Environment.getExternalStorageDirectory()+"/Text.apk");///sdcard/LockaxialQQ.a.2.apk
         if (apk.exists()) {
             try {
                 pluginManager.loadPlugin(apk);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }else {
+            Log.e("loadplugin","apk路径不存在");
+
         }
     }
 

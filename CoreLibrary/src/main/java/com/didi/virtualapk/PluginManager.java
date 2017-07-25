@@ -84,7 +84,7 @@ public class PluginManager {
         if (app == null) {
             this.mContext = context;
         } else {
-            this.mContext = ((Application)app).getBaseContext();
+            this.mContext = ((Application) app).getBaseContext();
         }
         prepare();
     }
@@ -187,6 +187,7 @@ public class PluginManager {
 
     /**
      * load a plugin into memory, then invoke it's Application.
+     *
      * @param apk the file of plugin, should end with .apk
      * @throws Exception
      */
@@ -205,7 +206,7 @@ public class PluginManager {
             // try to invoke plugin's application
             plugin.invokeApplication();
         } else {
-            throw  new RuntimeException("Can't load plugin which is invalid: " + apk.getAbsolutePath());
+            throw new RuntimeException("Can't load plugin which is invalid: " + apk.getAbsolutePath());
         }
     }
 

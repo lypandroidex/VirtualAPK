@@ -41,14 +41,23 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
+        Log.e(TAG, "UserManage.sUserId=" + UserManager.sUserId);
+        persistToFile();
     }
+    /*
+    @Override
+    protected void onResume() {
+
+
+        super.onStart();
+    }
+*/
 
     @Override
     protected void onResume() {
-        Log.d(TAG, "UserManage.sUserId=" + UserManager.sUserId);
+        Log.e(TAG, "UserManage.sUserId=" + UserManager.sUserId);
         persistToFile();
-
-        super.onStart();
+        super.onResume();
     }
 
     private void persistToFile() {
@@ -61,13 +70,14 @@ public class MainActivity extends Activity {
                 if (!dir.exists()) {
                     dir.mkdirs();
                 }
+                Log.e(TAG, "path = " + MyConstants.CHAPTER_2_PATH);
                 File cachedFile = new File(MyConstants.CACHE_FILE_PATH);
                 ObjectOutputStream objectOutputStream = null;
                 try {
                     objectOutputStream = new ObjectOutputStream(
                             new FileOutputStream(cachedFile));
                     objectOutputStream.writeObject(user);
-                    Log.d(TAG, "persist user:" + user);
+                    Log.e(TAG, "persist user:" + user);
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {

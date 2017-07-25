@@ -98,9 +98,10 @@ public class VAInstrumentation extends Instrumentation implements Handler.Callba
             Log.i(TAG, String.format("newActivity[%s : %s]", className, targetClassName));
 
             if (targetClassName != null) {
+
+                Log.e("ryg", "newActivity classloader is " + plugin.getClassLoader());
                 Activity activity = mBase.newActivity(plugin.getClassLoader(), targetClassName, intent);
                 activity.setIntent(intent);
-
                 try {
                     // for 4.1+
                     ReflectUtil.setField(ContextThemeWrapper.class, activity, "mResources", plugin.getResources());
